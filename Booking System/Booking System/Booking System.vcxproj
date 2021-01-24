@@ -140,6 +140,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Booking System.cpp" />
+    <ClCompile Include="Dictionary.cpp" />
+    <ClCompile Include="DLL.cpp" />
+    <ClCompile Include="LRU.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Dictionary.h" />
+    <ClInclude Include="DLL.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
