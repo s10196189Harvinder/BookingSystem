@@ -15,17 +15,36 @@ public:
 			cacheSize = size;
 		}
 	}
-	void set(ItemType item) {
-		ItemType value = keyTable.get(item);	//Check if item exists in key table
-		if (value.empty()) {					//If it does not exist,
-			items.add(item);						//add item to front of list
+	string get(string key) {
+		Node* node = keyTable.get(key);
+		if (node==nullptr) {
+			return "";
 		}
+		string value = node->item;
+		items.pushToHead(node);
+		return value;
+	}
+
+	void set(string key, string item) {
+		Node* value = keyTable.get(key);	//Check if item exists in key table
+		if (value!=nullptr) {
+			value->item = item;
+			items.pushToHead(value);
+			return;
+		}
+		if (items.getLength() == cacheSize) {
+			//remove rear
+			string key = items.getLastKey();
+			keyTable.remove(key);
+			items.removeLast();
+		}
+		Node* newitem = items.add(item,key);
+		keyTable.add(key,newitem);
+		
+	}
+	void print() {
+		items.print();
 	}
 
 
-	void checkCache() {
-		if (items.getLength() > cacheSize) {
-			items.remove(items.getLength());
-		}
-	}
 };

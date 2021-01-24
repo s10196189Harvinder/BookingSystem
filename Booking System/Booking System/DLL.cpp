@@ -1,6 +1,5 @@
 #include "DLL.h"
 #include <iostream>
-
 DLL::DLL() {
 	size = 0;
 	firstNode = NULL;
@@ -10,9 +9,10 @@ DLL::~DLL()
 {
 }
 
-bool DLL::add(ItemType data) {
+Node* DLL::add(string item, string key) {
 	Node* newNode = new Node;
-	newNode->item = data;
+	newNode->item = item;
+	newNode->key = key;
 
 	if (firstNode != NULL) {
 		Node* tempNode = firstNode;	//Temp node for old 
@@ -28,10 +28,10 @@ bool DLL::add(ItemType data) {
 		newNode->prev = NULL;
 	}
 	size++;
-	return true;
+	return newNode;
 }
 
-bool DLL::add(ItemType data, int index) {
+bool DLL::add(string data, int index) {
 	Node* newNode = new Node;
 	newNode->item = data;
 	newNode->next = NULL;
@@ -58,7 +58,7 @@ bool DLL::add(ItemType data, int index) {
 	return true;
 }
 
-bool DLL::append(ItemType data) {
+bool DLL::append(string data) {
 	Node* newNode = new Node;
 	newNode->item = data;
 	newNode->next = NULL;
@@ -97,20 +97,57 @@ void DLL::remove(int index){
 	size--;
 }
 
+void DLL::removeLast() {
+	if (isEmpty()) {
+		return;
+	}
+	if (firstNode == lastNode) {
+		delete lastNode;
+		lastNode = NULL;
+		firstNode = NULL;
+	}
+	else {
+		Node* oldNode = lastNode;
+		lastNode = oldNode->prev;
+		lastNode->next = NULL;
+		delete oldNode;
+	}
+
+}
+
 bool DLL::isEmpty() { if (size == 0) { return true; } else { return false; } }
 
 void DLL::print() {
-	cout << "Traversal in forward direction" << endl;
 	Node* curr = firstNode;
 	while (curr != NULL) {
 		cout << curr->item << ", ";
 		curr = curr->next;
 	}
+	cout << endl;
+}
+int DLL::getLength() {
+	return size;
+}
+string DLL::getLastKey() {
+	return lastNode->key;
+}
 
-	cout << "Traversal in reverse direction" << endl;
-	curr = lastNode;
-	while (curr != NULL) {
-		cout << curr->item << ", ";
-		curr = curr->prev;
+
+void DLL::pushToHead(Node* item) {
+	if (item == firstNode) {
+		return;
 	}
+	if (item== lastNode) {
+		lastNode = lastNode->prev;
+		lastNode->next = NULL;
+	}
+	else {
+		item->prev->next = item->next;		//Setting previous node's next to next node
+		item->next->prev = item->prev;
+	}
+	item->next = firstNode;
+	item->prev = NULL;
+	firstNode->prev = item;
+	firstNode = item;
+	return;
 }

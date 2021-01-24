@@ -4,21 +4,20 @@
 #include<string>
 #include<iostream>
 using namespace std;
-struct Node
+struct NodeC
 {
-	KeyType	 key;   // search key
+	string key;   // search key
 	Node* item;	// data item
-	Node* next;	// pointer pointing to next item with same search key
+	NodeC* next;	// pointer pointing to next item with same search key
 };
+
 const int MAX_SIZE = 5;
-typedef string KeyType;
-typedef Node ItemType;
 
 
 class Dictionary
 {
 private:
-	Node* items[MAX_SIZE];
+	NodeC* items[MAX_SIZE];
 	int  size;			// number of items in the Dictionary
 
 public:
@@ -29,26 +28,26 @@ public:
 	// destructor
 	~Dictionary();
 
-	int hash(KeyType key);
+	int hash(string key);
 
 	// add a new item with the specified key to the Dictionary
 	// pre : none
 	// post: new item is added to the Dictionary
 	//       size of Dictionary is increased by 1
-	bool add(KeyType newKey, ItemType newItem);
+	bool add(string newKey, Node* newItem);
 
 	// remove an item with the specified key in the Dictionary
 	// pre : key must exist in the Dictionary
 	// post: item is removed from the Dictionary
 	//       size of Dictionary is decreased by 1
-	void remove(KeyType key);
+	void remove(string key);
 
 
 	// get an item with the specified key in the Dictionary (retrieve)
 	// pre : key must exist in the dictionary
 	// post: none
 	// return the item with the specified key from the Dictionary
-	ItemType get(KeyType key);
+	Node* get(string key);
 
 	// check if the Dictionary is empty
 	// pre : none

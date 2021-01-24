@@ -1,3 +1,4 @@
+#include "DLL.h"
 #include "Dictionary.h"
 Dictionary::Dictionary() {
 	size = 0;
@@ -8,8 +9,8 @@ Dictionary::Dictionary() {
 Dictionary::~Dictionary() {
 	for (int i = 0; i < MAX_SIZE; i++) {
 		if (items[i] != NULL) {
-			Node* current = items[i];
-			Node* previous = NULL;
+			NodeC* current = items[i];
+			NodeC* previous = NULL;
 			while (current != NULL) {
 				previous = current;
 				current = current->next;
@@ -35,7 +36,7 @@ int charvalue(char c)
 }
 
 
-int Dictionary::hash(KeyType key) {
+int Dictionary::hash(string key) {
 	int h = 0;
 	for (int i = 0; i < key.size();i++) {
 		h += (charvalue(key[i]));
@@ -43,17 +44,17 @@ int Dictionary::hash(KeyType key) {
 	return (h % MAX_SIZE);
 }
 
-bool Dictionary::add(KeyType newKey, ItemType newItem) {
+bool Dictionary::add(string newKey, Node* newItem) {
 	int index = hash(newKey);
 	if (items[index] == NULL) {
-		Node* newNode = new Node();
+		NodeC* newNode = new NodeC();
 		newNode->item = newItem;
 		newNode->next = NULL;
 		newNode->key = newKey;
 		items[index] = newNode;
 	}
 	else {
-		Node* currentptr = new Node();
+		NodeC* currentptr = new NodeC();
 		currentptr = items[index];
 		if (currentptr->key == newKey) {
 			return false;
@@ -64,7 +65,7 @@ bool Dictionary::add(KeyType newKey, ItemType newItem) {
 				return false;
 			}
 		}
-		Node* newNode = new Node();
+		NodeC* newNode = new NodeC();
 		newNode->key = newKey;
 		newNode->item = newItem;
 		newNode->next = NULL;
@@ -74,7 +75,7 @@ bool Dictionary::add(KeyType newKey, ItemType newItem) {
 	return true;
 }
 
-void Dictionary::remove(KeyType key) {
+void Dictionary::remove(string key) {
 	int index = hash(key);
 	if (items[index] != NULL) {
 		if (items[index]->key == key) {
@@ -82,8 +83,8 @@ void Dictionary::remove(KeyType key) {
 			size--;
 		}
 		else {
-			Node* current = items[index];
-			Node* previous = items[index];
+			NodeC* current = items[index];
+			NodeC* previous = items[index];
 			while (current != NULL) {
 				if (current->key == key) {
 					previous->next = current->next;
@@ -103,9 +104,9 @@ void Dictionary::print() {
 	for (int i = 0; i < MAX_SIZE; i++) {
 		cout << "[" << i << "]";
 		if (items[i] != NULL) {
-			Node* current = items[i];
+			NodeC* current = items[i];
 			while (current) {
-				cout << current->key << ": " << current->item.key << " -> ";		//CHECK THIS IDK
+				cout << current->key << ": " << current->item->item << " -> ";		//CHECK THIS IDK
 				current = current->next;
 			}
 		}
@@ -113,15 +114,15 @@ void Dictionary::print() {
 	}
 }
 
-ItemType Dictionary::get(KeyType key) {
+Node* Dictionary::get(string key) {
 	int index = hash(key);
 	if (items[index] != NULL) {
 		if (items[index]->key == key) {
 			return items[index]->item;
 		}
 		else {
-			Node* current = items[index];
-			Node* previous = items[index];
+			NodeC* current = items[index];
+			NodeC* previous = items[index];
 			while (current != NULL) {
 				if (current->key == key) {
 					return items[index]->item;
@@ -134,8 +135,7 @@ ItemType Dictionary::get(KeyType key) {
 			}
 		}
 	}
-	Node blank = Node();
-	return Node;
+	return nullptr;
 }
 
 bool Dictionary::isEmpty() {
