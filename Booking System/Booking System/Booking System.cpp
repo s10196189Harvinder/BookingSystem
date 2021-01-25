@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include "LRU.cpp"
+#include "Dictionary.h"
+#include "Flight.h"
+#include "List.h"
 using namespace std;
 
 int main()
@@ -17,7 +20,9 @@ int main()
         cout << "3. Flight Schedule" << endl;
         cout << "4. Passenger Details" << endl;
         cout << "5. Flight Details" << endl;
-        cout << "6. Exit Program" << endl;
+        cout << "0. Exit Program" << endl;
+        cout << ("==========") << endl;
+        cout << ("Enter your option: ");
         cin >> val;
         if (val == "1") {
             //Booking system function
@@ -34,13 +39,23 @@ int main()
         else if (val == "5") {
             //View flight details
         }
-        else if (val == "6") {
+        else if (val == "0") {
+            cout << "Goodbye!";
             return 0;
         }
         else {
             cout << "Invalid input.." << endl;
         }
     } 
+
+    //Initialization of Database:
+    List flightList;
+    Flight f1 = Flight("1", "Available", 10);
+    Flight f2 = Flight("2", "Available", 20);
+    Flight f3 = Flight("3", "Cancelled", 10);
+    Flight f4 = Flight("4", "Available", 50);
+    flightList.add(f1);
+
     //LRU cache = LRU(5);         //Init cache with max size of 5
     //cache.set("first", "1"); 
     //cache.set("second", "2");
