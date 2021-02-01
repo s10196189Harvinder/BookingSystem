@@ -143,14 +143,12 @@
     <ClCompile Include="Dictionary.cpp" />
     <ClCompile Include="DLL.cpp" />
     <ClCompile Include="Flight.cpp" />
-    <ClCompile Include="List.cpp" />
     <ClCompile Include="LRU.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dictionary.h" />
     <ClInclude Include="DLL.h" />
     <ClInclude Include="Flight.h" />
-    <ClInclude Include="List.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
