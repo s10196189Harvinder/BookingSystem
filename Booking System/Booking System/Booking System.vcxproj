@@ -139,16 +139,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AVL_Tree.cpp" />
     <ClCompile Include="Booking System.cpp" />
+    <ClCompile Include="BST.cpp" />
     <ClCompile Include="Dictionary.cpp" />
     <ClCompile Include="DLL.cpp" />
     <ClCompile Include="Flight.cpp" />
     <ClCompile Include="LRU.cpp" />
+    <ClCompile Include="Passenger.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AVL_Tree.h" />
+    <ClInclude Include="BinaryNode.h" />
+    <ClInclude Include="BST.h" />
     <ClInclude Include="Dictionary.h" />
     <ClInclude Include="DLL.h" />
     <ClInclude Include="Flight.h" />
+    <ClInclude Include="Passenger.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

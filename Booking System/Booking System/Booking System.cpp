@@ -6,22 +6,14 @@
 #include "LRU.cpp"
 #include "Dictionary.h"
 #include "Flight.h"
-#include "List.h"
 using namespace std;
 
 
 int main()
 {
     //Initialization of Database:
-    List flightList;
-    Flight f1 = Flight("1", "Available", 10);
-    Flight f2 = Flight("2", "Available", 20);
-    Flight f3 = Flight("3", "Cancelled", 10);
-    Flight f4 = Flight("4", "Available", 50);
-    flightList.add(f1);
-    flightList.add(f2);
-    flightList.add(f3);
-    flightList.add(f4);
+
+
 
     bool valid = true;
     string val = "0";
