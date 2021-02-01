@@ -18,22 +18,16 @@ private:
 
 public:
 	Flight();
-	Flight(string departure, string destination, int departuredate, int departuretime, string number, string status, int seats) {
-		Departure = departure;
-		Destination = destination;
-		DepartureDate = departuredate;
-		DepartureTime = departuretime;
-		Number = number;
-		Status = status;
-		Seats = seats;
-	}
+	Flight(string departure, string destination, int departuredate, int departuretime, string number, string status, int seats);
 
 	void setNumber(string n);
 	string getNumber();
 
-	void setStatus(string st);
-	string getStatus();
-
-	void setSeats(int s);
-	int getSeats();
+	//void setStatus(string st);
+	//string getStatus();
+	
+	int getDepartureTime();
+	//void setSeats(int s);
+	//int getSeats();
+	string toString();
 };

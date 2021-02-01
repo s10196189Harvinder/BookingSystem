@@ -1,10 +1,10 @@
 #include <string>
+#include "Flight.h"
 #pragma once
 using namespace std;
 struct Node
 {
-	string item;	// data item
-	string key;
+	Flight item;	// data item
 	Node* next;	// pointer pointing to next item
 	Node* prev; //Pointer pointing behind
 };
@@ -18,9 +18,9 @@ public:
 	DLL();
 	~DLL();
 
-	Node* add(string,string);
-	bool add(string, int);
-	bool append(string);
+	Node* add(Flight);
+	bool add(Flight, int);
+	bool append(Flight);
 	void remove(int);
 	void removeLast();
 	string get(int);

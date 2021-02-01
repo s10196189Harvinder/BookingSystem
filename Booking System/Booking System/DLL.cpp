@@ -9,10 +9,9 @@ DLL::~DLL()
 {
 }
 
-Node* DLL::add(string item, string key) {
+Node* DLL::add(Flight item) {
 	Node* newNode = new Node;
 	newNode->item = item;
-	newNode->key = key;
 
 	if (firstNode != NULL) {
 		Node* tempNode = firstNode;	//Temp node for old 
@@ -31,7 +30,7 @@ Node* DLL::add(string item, string key) {
 	return newNode;
 }
 
-bool DLL::add(string data, int index) {
+bool DLL::add(Flight data, int index) {
 	Node* newNode = new Node;
 	newNode->item = data;
 	newNode->next = NULL;
@@ -58,7 +57,7 @@ bool DLL::add(string data, int index) {
 	return true;
 }
 
-bool DLL::append(string data) {
+bool DLL::append(Flight data) {
 	Node* newNode = new Node;
 	newNode->item = data;
 	newNode->next = NULL;
@@ -120,7 +119,7 @@ bool DLL::isEmpty() { if (size == 0) { return true; } else { return false; } }
 void DLL::print() {
 	Node* curr = firstNode;
 	while (curr != NULL) {
-		cout << curr->item << ", ";
+		cout << curr->item.getNumber() << ", ";
 		curr = curr->next;
 	}
 	cout << endl;
@@ -129,7 +128,7 @@ int DLL::getLength() {
 	return size;
 }
 string DLL::getLastKey() {
-	return lastNode->key;
+	return lastNode->item.getNumber();
 }
 
 

@@ -15,17 +15,17 @@ public:
 			cacheSize = size;
 		}
 	}
-	string get(string key) {
+	Flight get(string key) {
+		Flight flight = Flight();
 		Node* node = keyTable.get(key);
-		if (node==nullptr) {
-			return "";
+		if (node!=nullptr) {
+			flight = node->item;
+			items.pushToHead(node);
 		}
-		string value = node->item;
-		items.pushToHead(node);
-		return value;
+		return flight;
 	}
 
-	void set(string key, string item) {
+	void set(string key, Flight item) {
 		Node* value = keyTable.get(key);	//Check if item exists in key table
 		if (value!=nullptr) {
 			value->item = item;
@@ -38,7 +38,7 @@ public:
 			keyTable.remove(key);
 			items.removeLast();
 		}
-		Node* newitem = items.add(item,key);
+		Node* newitem = items.add(item);
 		keyTable.add(key,newitem);
 		
 	}

@@ -106,7 +106,7 @@ void Dictionary::print() {
 		if (items[i] != NULL) {
 			NodeC* current = items[i];
 			while (current) {
-				cout << current->key << ": " << current->item->item << " -> ";		//CHECK THIS IDK
+				cout << current->key << ": " << current->item->item.toString() << " -> ";		//CHECK THIS IDK
 				current = current->next;
 			}
 		}

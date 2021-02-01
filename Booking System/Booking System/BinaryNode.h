@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Flight.h"
 typedef int ItemType;
 
 struct BinaryNode
