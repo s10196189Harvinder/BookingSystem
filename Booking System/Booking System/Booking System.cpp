@@ -6,14 +6,24 @@
 #include "LRU.cpp"
 #include "Dictionary.h"
 #include "Flight.h"
+#include "List.h"
 using namespace std;
 
 
 int main()
 {
     //Initialization of Database:
-
-
+    List(flightList);
+    Flight f1 = Flight("Singapore", "Malaysia", 1611936000, "0800", "1", "Available", 50);
+    Flight f2 = Flight("Singapore", "Australia", 1611763200, "0800", "2", "Available", 50);
+    Flight f3 = Flight("USA", "Malaysia", 1611936000, "0900", "3", "Cancelled", 50);
+    Flight f4 = Flight("Australia", "Singapore", 1612022400, "1000", "4", "Available", 70);
+    Flight f5 = Flight("USA", "Singapore", 1612022400, "0900", "5", "Cancelled", 40);
+    flightList.add(f1);
+    flightList.add(f2);
+    flightList.add(f3);
+    flightList.add(f4);
+    flightList.add(f5);
 
     bool valid = true;
     string val = "0";
@@ -37,9 +47,9 @@ int main()
         }
         else if (val == "3") {
             //View flight schedules
-            cout << "Flight Number" << setw(21) << "Status" << setw(21) << "Seats" << endl;
+            cout << "Departure" << setw(9) << "Arrival" << setw(15) << "Departure Date" << setw(15) << "Departure Time" << setw(15) << "Flight Number" << setw(15) << "Status" << setw(15) << "Number of Seats" << endl;
             cout << "============================" << endl;
-
+            flightList.print();
             cout << "============================" << endl;
         }
         else if (val == "4") {

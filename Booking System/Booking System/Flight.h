@@ -11,14 +11,14 @@ private:
 	string Departure;
 	string Destination;
 	int DepartureDate; //Epochs
-	int DepartureTime; //Epochs
+	string DepartureTime; //Epochs
 	string Number; // Flight Number
 	string Status; // Flight Status (Available, Cancelled)
 	int Seats; // Number of seats left on the flight
 
 public:
 	Flight();
-	Flight(string departure, string destination, int departuredate, int departuretime, string number, string status, int seats);
+	Flight(string departure, string destination, int departuredate, string departuretime, string number, string status, int seats);
 
 	void setNumber(string n);
 	string getNumber();
@@ -26,7 +26,7 @@ public:
 	//void setStatus(string st);
 	//string getStatus();
 	
-	int getDepartureTime();
+	string getDepartureTime();
 	//void setSeats(int s);
 	//int getSeats();
 	string toString();

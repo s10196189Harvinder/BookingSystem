@@ -2,7 +2,7 @@
 #include "Flight.h"
 
 Flight::Flight(){}
-Flight::Flight(string departure, string destination, int departuredate, int departuretime, string number, string status, int seats) {
+Flight::Flight(string departure, string destination, int departuredate, string departuretime, string number, string status, int seats) {
 	Departure = departure;
 	Destination = destination;
 	DepartureDate = departuredate;
@@ -12,17 +12,14 @@ Flight::Flight(string departure, string destination, int departuredate, int depa
 	Seats = seats;
 }
 
-
-
-
 void Flight::setNumber(string n) {
 	Number = n;
 }
 string Flight::getNumber() { return Number; }
 string Flight::toString() {
-	string text = Departure + Destination + to_string(DepartureDate) + to_string(DepartureTime) + Number + Status + to_string(Seats);
+	string text = Departure + "    " + Destination + "    " + to_string(DepartureDate) + "    " + DepartureTime + "    " + Number + "    " + Status + "    " + to_string(Seats);
 	return text;
 }
-int Flight::getDepartureTime() {
+string Flight::getDepartureTime() {
 	return DepartureTime;
 }
