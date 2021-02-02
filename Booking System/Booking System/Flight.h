@@ -30,4 +30,6 @@ public:
 	//void setSeats(int s);
 	//int getSeats();
 	string toString();
+	string getDeparture();
+	string getDestination();
 };

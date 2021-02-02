@@ -25,8 +25,8 @@ public:
 		return flight;
 	}
 
-	void set(string key, Flight item) {
-		Node* value = keyTable.get(key);	//Check if item exists in key table
+	void set(Flight item) {
+		Node* value = keyTable.get(item.getNumber());	//Check if item exists in key table
 		if (value!=nullptr) {
 			value->item = item;
 			items.pushToHead(value);
@@ -39,8 +39,7 @@ public:
 			items.removeLast();
 		}
 		Node* newitem = items.add(item);
-		keyTable.add(key,newitem);
-		
+		keyTable.add(item.getNumber(),newitem);
 	}
 	void print() {
 		items.print();

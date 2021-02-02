@@ -150,3 +150,39 @@ void DLL::pushToHead(Node* item) {
 	firstNode = item;
 	return;
 }
+
+
+void DLL::removeNum(string number) {
+	Node* current = firstNode;
+	Node* previous;
+	Node* next;
+	while (current != NULL) {
+		previous = current->prev;
+		next = current->next;
+		if (current->item.getNumber() == number) {
+			if (previous == nullptr) {
+				firstNode = next;
+				next->prev = NULL;
+			}
+			else if (next==nullptr) {
+				lastNode = previous;
+				previous->next = NULL;
+			}
+			else {
+				previous->next = next;
+				next->prev = previous;
+			}
+			delete current;
+		}
+		current = current->next;
+	}
+}
+Flight DLL::getNum(string number) {
+	Node* current = firstNode;
+	while (current != NULL) {
+		if (current->item.getNumber() == number) {
+			return current->item;
+		}
+		current = current->next;
+	}
+}

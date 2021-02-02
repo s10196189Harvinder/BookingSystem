@@ -7,18 +7,35 @@
 #include "Dictionary.h"
 #include "Flight.h"
 #include "List.h"
+#include <chrono>
 using namespace std;
 
+Flight searchNum(List flightList, string number) {
+    for (int i = 0;i < flightList.getLength();i++) {
+        Flight flight = flightList.get(i);
+        if (flight.getNumber() == number) {
+            return flight;
+        }
+    }
+}
 
 int main()
 {
     //Initialization of Database:
+    LRU cache = LRU(3);         //Init cache with max size of 4
     List(flightList);
-    Flight f1 = Flight("Singapore", "Malaysia", 1611936000, "0800", "1", "Available", 50);
-    Flight f2 = Flight("Singapore", "Australia", 1611763200, "0800", "2", "Available", 50);
-    Flight f3 = Flight("USA", "Malaysia", 1611936000, "0900", "3", "Cancelled", 50);
-    Flight f4 = Flight("Australia", "Singapore", 1612022400, "1000", "4", "Available", 70);
-    Flight f5 = Flight("USA", "Singapore", 1612022400, "0900", "5", "Cancelled", 40);
+    Flight f1 = Flight("Singapore", "Malaysia", 1611936000, "0800", "F01", "Available", 50);
+    Flight f2 = Flight("Singapore", "Australia", 1611763200, "0800", "F02", "Available", 50);
+    Flight f3 = Flight("USA", "Malaysia", 1611936000, "0900", "F03", "Cancelled", 50);
+    Flight f4 = Flight("Australia", "Singapore", 1612022400, "1000", "F04", "Available", 70);
+    Flight f5 = Flight("USA", "Singapore", 1612022400, "0900", "F05", "Cancelled", 40);
+    Flight f6 = Flight("USA", "Singapore", 1612022500, "0800", "F06", "Available", 70);
+    cache.set(f1);
+    cache.set(f2);
+    cache.set(f3);
+    cache.set(f4);
+    cache.set(f5);
+    cache.set(f6);
     flightList.add(f1);
     flightList.add(f2);
     flightList.add(f3);
@@ -36,6 +53,11 @@ int main()
         cout << "4. Passenger Details" << endl;
         cout << "5. Flight Details" << endl;
         cout << "0. Exit Program" << endl;
+        //Demonstration of LRU 
+        /*
+        cout << "6. Get Flight Route" << endl;
+        cout << "7. View LRU Cache" << endl;*/
+        // End
         cout << ("==========") << endl;
         cout << ("Enter your option: ");
         cin >> val;
@@ -58,6 +80,23 @@ int main()
         else if (val == "5") {
             //View flight details
         }
+        else if (val == "6") {
+            string number;
+            cout << "Enter flight number" << endl;
+            cin >> number;
+            auto start = chrono::steady_clock::now();
+            Flight flight;
+            flight = cache.get(number);
+            if (flight.getNumber() == "") {
+                //flight = searchNum(flightList, number);
+            }
+            auto end = chrono::steady_clock::now();
+            cout << flight.toString() << endl;
+            cout << "Elapsed Time (ns):" << chrono::duration_cast<chrono::nanoseconds>(end - start).count() << endl;
+        }
+        else if (val == "7") {
+            cache.print();
+        }
         else if (val == "0") {
             cout << "Goodbye!";
             return 0;
@@ -67,18 +106,4 @@ int main()
         }
     } 
 
-
-    //LRU cache = LRU(5);         //Init cache with max size of 5
-    //cache.set("first", "1"); 
-    //cache.set("second", "2");
-    //cache.set("three", "3");
-    //cache.set("four", "4");
-    //cache.set("five", "5");     //Add 5 items to cache
-    //cache.print();
-    //cache.set("six", "1");      //Add 6th item, causing cache to evict the least recently used item (first/1)
-    //cache.print();
-    //cout << cache.get("three") << endl;     //Get the value of the item with key "three"
-    //cache.set("three", "Changed Value");    //Change value of item with key "three" to "Changed value"
-    //cout << cache.get("three") << endl;     //Get value of key "three"
-    //cache.print();              //As "three" has been edited, it will be in the front of the cache.
 }

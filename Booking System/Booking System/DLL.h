@@ -29,4 +29,8 @@ public:
 	void print();
 	string getLastKey();
 	void pushToHead(Node*);
+
+	//tbc
+	void removeNum(string);
+	Flight getNum(string);
 };

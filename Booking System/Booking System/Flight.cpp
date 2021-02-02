@@ -23,3 +23,6 @@ string Flight::toString() {
 string Flight::getDepartureTime() {
 	return DepartureTime;
 }
+
+string Flight::getDeparture() { return Departure; }
+string Flight::getDestination() { return Destination; }
