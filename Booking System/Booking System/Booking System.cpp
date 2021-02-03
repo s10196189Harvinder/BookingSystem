@@ -6,6 +6,8 @@
 #include "LRU.cpp"
 #include "Dictionary.h"
 #include "Flight.h"
+#include "Passenger.h"
+#include "List2.h"
 #include "List.h"
 #include <chrono>
 using namespace std;
@@ -30,6 +32,17 @@ int main()
     Flight f4 = Flight("Australia", "Singapore", 1612022400, "1000", "F04", "Available", 70);
     Flight f5 = Flight("USA", "Singapore", 1612022400, "0900", "F05", "Cancelled", 40);
     Flight f6 = Flight("USA", "Singapore", 1612022500, "0800", "F06", "Available", 70);
+    List2(passengerList);
+    Passenger p1 = Passenger("John", "k8hxv");
+    Passenger p2 = Passenger("Jane", "6eb4g");
+    Passenger p3 = Passenger("Ken", "l0ahv");
+    Passenger p4 = Passenger("Adam", "ks832m");
+    Passenger p5 = Passenger("Roger", "oshc8");
+    passengerList.add(p1);
+    passengerList.add(p2);
+    passengerList.add(p3);
+    passengerList.add(p4);
+    passengerList.add(p5);
     cache.set(f1);
     cache.set(f2);
     cache.set(f3);
@@ -69,7 +82,7 @@ int main()
         }
         else if (val == "3") {
             //View flight schedules
-            cout << "Departure" << setw(9) << "Arrival" << setw(15) << "Departure Date" << setw(15) << "Departure Time" << setw(15) << "Flight Number" << setw(15) << "Status" << setw(15) << "Number of Seats" << endl;
+            cout << "Departure" << setw(11) << "Arrival" << setw(15) << "Departure Date" << setw(15) << "Departure Time" << setw(15) << "Flight Number" << setw(15) << "Status" << setw(15) << "Number of Seats" << endl;
             cout << "============================" << endl;
             flightList.print();
             cout << "============================" << endl;

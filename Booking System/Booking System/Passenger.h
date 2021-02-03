@@ -13,8 +13,13 @@ private:
 
 public:
 	Passenger();
-	Passenger(string username, string password) {
-		Username = username;
-		Password = password;
-	}
-}; 
+	Passenger(string username, string password);
+
+	void setUsername(string username);
+	string getUsername();
+
+	void setPassword(string password);
+	string getPassword();
+
+	string toString();
+};

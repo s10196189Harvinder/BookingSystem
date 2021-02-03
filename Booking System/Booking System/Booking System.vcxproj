@@ -144,6 +144,7 @@
     <ClCompile Include="DLL.cpp" />
     <ClCompile Include="Flight.cpp" />
     <ClCompile Include="List.cpp" />
+    <ClCompile Include="List2.cpp" />
     <ClCompile Include="LRU.cpp" />
     <ClCompile Include="Passenger.cpp" />
   </ItemGroup>
@@ -152,6 +153,7 @@
     <ClInclude Include="DLL.h" />
     <ClInclude Include="Flight.h" />
     <ClInclude Include="List.h" />
+    <ClInclude Include="List2.h" />
     <ClInclude Include="Passenger.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
