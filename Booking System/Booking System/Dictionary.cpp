@@ -9,13 +9,7 @@ Dictionary::Dictionary() {
 Dictionary::~Dictionary() {
 	for (int i = 0; i < MAX_SIZE; i++) {
 		if (items[i] != NULL) {
-			NodeC* current = items[i];
-			NodeC* previous = NULL;
-			while (current != NULL) {
-				previous = current;
-				current = current->next;
-				delete previous;
-			}
+			delete items[i];
 
 		}
 	}
@@ -46,58 +40,37 @@ int Dictionary::hash(string key) {
 
 bool Dictionary::add(string newKey, Node* newItem) {
 	int index = hash(newKey);
-	if (items[index] == NULL) {
-		NodeC* newNode = new NodeC();
-		newNode->item = newItem;
-		newNode->next = NULL;
-		newNode->key = newKey;
-		items[index] = newNode;
+	while (items[index] != NULL) {		//Linear probing
+		index = ((index)+1) % MAX_SIZE;
 	}
-	else {
-		NodeC* currentptr = new NodeC();
-		currentptr = items[index];
-		if (currentptr->key == newKey) {
-			return false;
-		}
-		while (currentptr->next != NULL) {
-			currentptr = currentptr->next;
-			if (currentptr->key == newKey) {
-				return false;
-			}
-		}
-		NodeC* newNode = new NodeC();
-		newNode->key = newKey;
-		newNode->item = newItem;
-		newNode->next = NULL;
-		currentptr->next = newNode;
-	}
-	size += 1;
+	NodeC* newNode = new NodeC();
+	newNode->item = newItem;
+	newNode->key = newKey;
+	items[index] = newNode;
+	size ++;
 	return true;
 }
 
 void Dictionary::remove(string key) {
 	int index = hash(key);
-	if (items[index] != NULL) {
-		if (items[index]->key == key) {
-			items[index] = items[index]->next;
-			size--;
+	int temp = index;
+	while (true) {
+		if (items[index] == NULL) {
+			index = (index + 1) % MAX_SIZE;
+		}
+		else if (items[index]->key!=key) {
+			index = (index + 1) % MAX_SIZE;
 		}
 		else {
-			NodeC* current = items[index];
-			NodeC* previous = items[index];
-			while (current != NULL) {
-				if (current->key == key) {
-					previous->next = current->next;
-					size--;
-					break;
-				}
-				else {
-					previous = current;
-					current = current->next;
-				}
-			}
+			break;
+		}
+		if (index == temp) {	//If it goes around the dict and cannot find the item
+			return;
 		}
 	}
+	delete items[index];
+	items[index] = NULL;
+	size--;
 }
 
 void Dictionary::print() {
@@ -105,10 +78,7 @@ void Dictionary::print() {
 		cout << "[" << i << "]";
 		if (items[i] != NULL) {
 			NodeC* current = items[i];
-			while (current) {
-				cout << current->key << ": " << current->item->item.toString() << " -> ";		//CHECK THIS IDK
-				current = current->next;
-			}
+			cout << current->key << ": " << current->item->item.toString() << endl;
 		}
 		cout << "NULL" << endl;
 	}
@@ -116,26 +86,22 @@ void Dictionary::print() {
 
 Node* Dictionary::get(string key) {
 	int index = hash(key);
-	if (items[index] != NULL) {
-		if (items[index]->key == key) {
-			return items[index]->item;
+	int temp = index;
+	while (true) {
+		if (items[index] == NULL) {
+			index = (index + 1) % MAX_SIZE;
+		}
+		else if (items[index]->key != key) {
+			index = (index + 1) % MAX_SIZE;
 		}
 		else {
-			NodeC* current = items[index];
-			NodeC* previous = items[index];
-			while (current != NULL) {
-				if (current->key == key) {
-					return items[index]->item;
-					break;
-				}
-				else {
-					previous = current;
-					current = current->next;
-				}
-			}
+			break;
+		}
+		if (index == temp) {
+			return NULL;
 		}
 	}
-	return nullptr;
+	return(items[index]->item);
 }
 
 bool Dictionary::isEmpty() {

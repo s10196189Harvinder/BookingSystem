@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include "Flight.h"
 using namespace std;
 
 class Passenger
@@ -10,11 +11,11 @@ class Passenger
 private:
 	string Username;
 	string Password;
-	string Number;
+	Flight pFlight;
 
 public:
 	Passenger();
-	Passenger(string username, string password, string num);
+	Passenger(string username, string password, Flight num);
 
 	void setUsername(string username);
 	string getUsername();
@@ -22,8 +23,8 @@ public:
 	void setPassword(string password);
 	string getPassword();
 
-	void setFlight(string num);
-	string getFlight();
+	void setFlight(Flight num);
+	Flight getFlight();
 
 	string toString();
 };

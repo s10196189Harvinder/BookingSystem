@@ -12,14 +12,6 @@
 #include <chrono>
 using namespace std;
 
-Flight searchNum(List flightList, string number) {
-    for (int i = 0;i < flightList.getLength();i++) {
-        Flight flight = flightList.get(i);
-        if (flight.getNumber() == number) {
-            return flight;
-        }
-    }
-}
 
 int main()
 {
@@ -33,11 +25,11 @@ int main()
     Flight f5 = Flight("USA", "Singapore", 1612022400, "0900", "F05", "Cancelled", 40);
     Flight f6 = Flight("USA", "Singapore", 1612022500, "0800", "F06", "Available", 70);
     List2(passengerList); //Passenger List
-    Passenger p1 = Passenger("John", "k8hxv", "F01");
-    Passenger p2 = Passenger("Jane", "6eb4g", "F04");
-    Passenger p3 = Passenger("Ken", "kkahv", "F03");
-    Passenger p4 = Passenger("Adam", "ks832m", "F02");
-    Passenger p5 = Passenger("Roger", "oshc8", "F01");
+    Passenger p1 = Passenger("John", "k8hxv", f1);
+    Passenger p2 = Passenger("Jane", "6eb4g", f4);
+    Passenger p3 = Passenger("Ken", "kkahv", f3);
+    Passenger p4 = Passenger("Adam", "ks832m", f2);
+    Passenger p5 = Passenger("Roger", "oshc8", f1);
     passengerList.add(p1);
     passengerList.add(p2);
     passengerList.add(p3);
@@ -56,7 +48,6 @@ int main()
     flightList.add(f5);
     flightList.add(f6);
 
-
     bool valid = true;
     string val = "0";
     while (true){
@@ -69,9 +60,9 @@ int main()
         cout << "5. Flight Details" << endl;
         cout << "0. Exit Program" << endl;
         //Demonstration of LRU 
-        /*
+        
         cout << "6. Get Flight Route" << endl;
-        cout << "7. View LRU Cache" << endl;*/
+        cout << "7. View LRU Cache" << endl;
         // End
         cout << ("==========") << endl;
         cout << ("Enter your option: ");
@@ -93,8 +84,16 @@ int main()
             cout << "Username: " << user << endl;
             cout << "Password: " << pass << endl;
             cout << "Selected Flight: " << num << endl;
+            Flight* flight = flightList.find(num);
+            if (flight == nullptr) {
+                cout << "Invalid number inputted !!" << endl;
+                continue;
+            }
+            else {
+                cache.set(*flight);
+            }
             cout << "You have been added into our database!" << endl;
-            Passenger passenger = Passenger(user, pass, num);
+            Passenger passenger = Passenger(user, pass, *flight);
             passengerList.add(passenger);
         }
         else if (val == "2") {
@@ -110,7 +109,9 @@ int main()
                     cin >> pass;
                     if (pass == passengerList.get(i).getPassword())
                     {
-                        cout << "Your booked flight is: " << passengerList.get(i).getFlight() << endl;
+                        Flight num = passengerList.get(i).getFlight();
+                        cout << "Your booked flight is: " << num.toString() << endl;
+                        cache.set(num);
                         break;
                     }
                 }
@@ -136,7 +137,7 @@ int main()
             Flight flight;
             flight = cache.get(number);
             if (flight.getNumber() == "") {
-                //flight = searchNum(flightList, number);
+                flight = *flightList.find(number);
             }
             auto end = chrono::steady_clock::now();
             cout << flight.toString() << endl;

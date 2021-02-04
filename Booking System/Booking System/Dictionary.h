@@ -6,9 +6,8 @@
 using namespace std;
 struct NodeC
 {
-	string key;   // search key
+	string key; // search key
 	Node* item;	// data item
-	NodeC* next;	// pointer pointing to next item with same search key
 };
 
 const int MAX_SIZE = 5;

@@ -111,6 +111,7 @@ void DLL::removeLast() {
 		lastNode->next = NULL;
 		delete oldNode;
 	}
+	size--;
 
 }
 

@@ -122,3 +122,16 @@ void List::print() {
 		temp = temp->next; //Set temp to point to the next node
 	}
 }
+
+Flight* List::find(string num) {
+	Node* current = firstNode;
+	while (current != NULL) {
+		if (current->item.getNumber() == num) {
+			return &(current->item);
+		}
+		current = current->next;
+	}
+	Flight* fh;
+	fh = nullptr;
+	return fh;
+}
