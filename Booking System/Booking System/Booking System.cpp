@@ -49,9 +49,6 @@ int main()
     flightList.add(f1);
     flightList.mergesort();     //Apply merge sort algorithm
 
-
-
-
     bool valid = true;
     string val = "0";
     while (true){
@@ -90,7 +87,7 @@ int main()
             cout << "Selected Flight: " << num << endl;
             Flight* flight = flightList.find(num);
             if (flight == nullptr) {
-                cout << "Invalid number inputted !!" << endl;
+                cout << "Invalid flight number!" << endl;
                 continue;
             }
             else {
@@ -100,27 +97,37 @@ int main()
             Passenger passenger = Passenger(user, pass, *flight);
             passengerList.add(passenger);
         }
-        else if (val == "2") {
+        else if (val == "2") { 
+            int count = 0;
             string user;
             string pass;
             cout << "Enter username: ";
             cin >> user;
+
             for (int i = 0; i < passengerList.getLength(); i++)
             {
                 if (user == passengerList.get(i).getUsername())
                 {
                     cout << "Enter password: ";
                     cin >> pass;
-                    if (pass == passengerList.get(i).getPassword())
+                    if (pass != passengerList.get(i).getPassword())
+                    {
+                        cout << "Invalid password!" << endl;
+                    }
+                    else
                     {
                         Flight num = passengerList.get(i).getFlight();
-                        cout << "Your booked flight is: " << num.toString() << endl;
+                        cout << "Your booked flight is: " << num.getNumber() << endl;
+                        cout << "Your flight status is: " << num.getStatus() << endl;
                         cache.set(num);
-                        break;
+                        continue;
                     }
                 }
+                continue;
             }
+            cout << "User does not exist!" << endl;
         }
+
         else if (val == "3") {
             cout << "Departure" << setw(11) << "Arrival" << setw(15) << "Departure Date" << setw(15) << "Departure Time" << setw(15) << "Flight Number" << setw(15) << "Status" << setw(15) << "Number of Seats" << endl;
             cout << "============================" << endl;
@@ -128,10 +135,36 @@ int main()
             cout << "============================" << endl;
         }
         else if (val == "4") {
-            //View passenger details
+            string name;
+            cout << "Enter name of passenger: ";
+            cin >> name;
+            for (int i = 0; i < passengerList.getLength(); i++)
+            {
+                if (name == passengerList.get(i).getUsername())
+                {
+                    cout << "Name: " << name << endl;
+                    cout << "Flight: " << passengerList.get(i).getFlight().getNumber() << endl;
+                }
+            }
         }
         else if (val == "5") {
-            //View flight details
+            string num;
+            cout << "Selected Flight: ";
+            cin >> num;
+            Flight* flight = flightList.find(num);
+            if (flight == nullptr) 
+            {
+                cout << "Invalid fight number!" << endl;
+                continue;
+            }
+            else 
+            {
+                cout << "Departure location: " << flight->getDeparture() << endl;
+                cout << "Arrival location: " << flight->getDestination() << endl;
+                cout << "Departure date: " << flight->getDepartureDate() << endl;
+                cout << "Departure time: " << flight->getDepartureTime() << endl;
+                cout << "Flight status: " << flight->getStatus() << endl;
+            }
         }
         else if (val == "6") {
             string number;

@@ -24,8 +24,8 @@ public:
 	string getNumber();
 
 	//void setStatus(string st);
-	//string getStatus();
-	
+	string getStatus();
+	string getDepartureDate();
 	string getDepartureTime();
 	//void setSeats(int s);
 	//int getSeats();
