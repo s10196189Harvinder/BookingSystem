@@ -103,7 +103,7 @@ int main()
             string pass;
             cout << "Enter username: ";
             cin >> user;
-
+            bool success = false;
             for (int i = 0; i < passengerList.getLength(); i++)
             {
                 if (user == passengerList.get(i).getUsername())
@@ -120,12 +120,14 @@ int main()
                         cout << "Your booked flight is: " << num.getNumber() << endl;
                         cout << "Your flight status is: " << num.getStatus() << endl;
                         cache.set(num);
-                        continue;
+                        success = true;
+                        break;
                     }
                 }
-                continue;
             }
-            cout << "User does not exist!" << endl;
+            if (!success) {
+                cout << "User does not exist!" << endl;
+            }
         }
 
         else if (val == "3") {
