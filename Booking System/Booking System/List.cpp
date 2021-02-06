@@ -118,7 +118,7 @@ void List::print() {
 	Node* temp = firstNode; //Set a temp pointer to point to the first node of the list
 	while (temp != NULL) {
 		ItemType item1 = temp->item; //Retrieve the item from the node that pointed by temp
-		cout << item1.toString() << endl; //Display the item
+		item1.toString(); //Display the item
 		temp = temp->next; //Set temp to point to the next node
 	}
 }

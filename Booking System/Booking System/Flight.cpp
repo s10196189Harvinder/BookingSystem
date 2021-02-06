@@ -1,5 +1,6 @@
 // Flight.cpp - Implementation of Flight class
 #include "Flight.h"
+#include <iomanip>
 
 Flight::Flight(){}
 Flight::Flight(string departure, string destination, int departuredate, string departuretime, string number, string status, int seats) {
@@ -19,6 +20,7 @@ string Flight::getStatus() { return Status; }
 
 string Flight::toString() {
 	string text = Departure + "    " + Destination + "    " + to_string(DepartureDate) + "    " + DepartureTime + "    " + Number + "    " + Status + "    " + to_string(Seats);
+	cout << Departure << setw(11) << Destination << setw(15) << to_string(DepartureDate) << setw(15) << DepartureTime << setw(15) << Number << setw(15) << Status << setw(15) << to_string(Seats) << endl;
 	return text;
 }
 
