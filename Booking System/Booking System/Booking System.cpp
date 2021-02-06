@@ -47,10 +47,7 @@ int main()
     flightList.add(f2);
     flightList.add(f5);
     flightList.add(f1);
-    flightList.print();
     flightList.mergesort();     //Apply merge sort algorithm
-    cout << endl;
-    flightList.print();
 
 
 
