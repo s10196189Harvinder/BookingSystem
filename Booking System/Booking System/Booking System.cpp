@@ -18,12 +18,12 @@ int main()
     //Initialization of Database:
     LRU cache = LRU(3); //Init cache with max size of 4
     List(flightList); //Flight List
-    Flight f1 = Flight("Singapore", "Malaysia", 1611936000, "0800", "F01", "Available", 50);
-    Flight f2 = Flight("Singapore", "Australia", 1611763200, "0800", "F02", "Available", 50);
-    Flight f3 = Flight("USA", "Malaysia", 1611936000, "0900", "F03", "Cancelled", 50);
-    Flight f4 = Flight("Australia", "Singapore", 1612022400, "1000", "F04", "Available", 70);
-    Flight f5 = Flight("USA", "Singapore", 1612022400, "0900", "F05", "Cancelled", 40);
     Flight f6 = Flight("USA", "Singapore", 1612022500, "0800", "F06", "Available", 70);
+    Flight f1 = Flight("Singapore", "Malaysia", 1611936000, "0800", "F01", "Available", 50);
+    Flight f4 = Flight("Australia", "Singapore", 1612022400, "1000", "F04", "Available", 70);
+    Flight f3 = Flight("USA", "Malaysia", 1611936000, "0900", "F03", "Cancelled", 50);
+    Flight f2 = Flight("Singapore", "Australia", 1611763200, "0800", "F02", "Available", 50);
+    Flight f5 = Flight("USA", "Singapore", 1612022400, "0900", "F05", "Cancelled", 40);
     List2(passengerList); //Passenger List
     Passenger p1 = Passenger("John", "k8hxv", f1);
     Passenger p2 = Passenger("Jane", "6eb4g", f4);
@@ -41,12 +41,19 @@ int main()
     cache.set(f4);
     cache.set(f5);
     cache.set(f6);
-    flightList.add(f1);
-    flightList.add(f2);
-    flightList.add(f3);
-    flightList.add(f4);
-    flightList.add(f5);
     flightList.add(f6);
+    flightList.add(f4);
+    flightList.add(f3);
+    flightList.add(f2);
+    flightList.add(f5);
+    flightList.add(f1);
+    flightList.print();
+    flightList.mergesort();     //Apply merge sort algorithm
+    cout << endl;
+    flightList.print();
+
+
+
 
     bool valid = true;
     string val = "0";

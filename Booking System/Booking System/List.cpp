@@ -135,3 +135,56 @@ Flight* List::find(string num) {
 	fh = nullptr;
 	return fh;
 }
+
+
+void List::mergesort() {
+	mergesort(&firstNode);
+}
+void List::mergesort(Node** ref) {
+	Node* p = *ref;
+	Node* a;
+	Node* b;
+	if (p==NULL || p->next == NULL) {
+		return;
+	}
+	split(p,&a, &b);
+	mergesort(&a);
+	mergesort(&b);
+	*ref = merge(a, b);
+}
+void List::split(Node* src,Node **front, Node **back){
+	Node* ahead;
+	Node* behind;
+	ahead = src->next;
+	behind = src;
+	while (ahead != NULL) {
+		ahead = ahead->next;		//Ahead traverses 2x faster than behind
+		if (ahead != NULL) {
+			behind = behind->next;
+			ahead = ahead->next;
+		}
+	}
+	*front = src;
+	*back = behind->next;
+	behind->next = NULL;
+}
+List::Node* List::merge(Node* head1, Node* head2) {
+	Node* res = NULL;
+	if (head1 == NULL) {
+		return head2;
+	}
+	else if (head2 == NULL) {
+		return head1;
+	}
+	int num1 = stoi((head1->item.getNumber()).substr(1, 2));
+	int num2 = stoi((head2->item.getNumber()).substr(1, 2));
+	if (num1 <= num2) {
+		res = head1;
+		res->next = merge(head1->next, head2);
+	}
+	else {
+		res = head2;
+		res->next = merge(head1, head2->next);
+	}
+	return res;
+}

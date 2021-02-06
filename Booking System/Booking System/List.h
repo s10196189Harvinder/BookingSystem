@@ -69,5 +69,11 @@ public:
 	// void replace(int index, ItemType item);
 	// int search(ItemType item);
 	Flight* find(string num);
+
+	void mergesort(Node**);
+	void mergesort();
+
+	void split(Node* src,Node** front, Node** back);
+	Node* merge(Node*,Node*);
 };
 
