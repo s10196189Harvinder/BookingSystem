@@ -187,8 +187,12 @@ int main()
             Flight* flight = cache.get(number);
             if (flight == nullptr) {
                 flight = flightList.find(number);
-                cache.set(*flight);
             }
+            if (flight == nullptr) {
+                cout << "Invalid Flight number !" << endl;
+                continue;
+            }
+            cache.set(*flight);
             auto end = chrono::steady_clock::now();
             flight->toString();
             cout << "Elapsed Time (ns):" << chrono::duration_cast<chrono::nanoseconds>(end - start).count() << endl;
