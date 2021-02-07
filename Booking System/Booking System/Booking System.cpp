@@ -63,15 +63,16 @@ int main()
         cout << "3. Flight Schedule" << endl;
         cout << "4. Passenger Details" << endl;
         cout << "5. Flight Details" << endl;
-        cout << "0. Exit Program" << endl;
         //Demonstration of LRU 
-        
         cout << "6. Get Flight Route" << endl;
         cout << "7. View LRU Cache" << endl;
         // End
+        cout << "0. Exit Program" << endl;
         cout << ("==========") << endl;
         cout << ("Enter your option: ");
+
         cin >> val;
+
         if (val == "1") {
             string user;
             string pass;
