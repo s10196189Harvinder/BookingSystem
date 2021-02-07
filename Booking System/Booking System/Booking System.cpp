@@ -136,7 +136,7 @@ int main()
         }
 
         else if (val == "3") {
-            cout << "Departure" << setw(11) << "Arrival" << setw(15) << "Departure Date" << setw(15) << "Departure Time" << setw(15) << "Flight Number" << setw(15) << "Status" << setw(15) << "Number of Seats" << endl;
+            cout << "Departure" << setw(11) << "Arrival" << setw(18) << "Departure Date" << setw(18) << "Departure Time" << setw(18) << "Flight Number" << setw(10) << "Status" << setw(20) << "Number of Seats" << endl;
             cout << "============================" << endl;
             flightList.print();
             cout << "============================" << endl;
@@ -177,6 +177,10 @@ int main()
                 cout << "Departure date: " << flight->getDepartureDate() << endl;
                 cout << "Departure time: " << flight->getDepartureTime() << endl;
                 cout << "Flight status: " << flight->getStatus() << endl;
+                if (flight->getStatus() == "Cancelled")
+                {
+                    cout << "Please use Option 1 to book a new flight!" << endl;
+                }
             }
         }
         else if (val == "6") {
