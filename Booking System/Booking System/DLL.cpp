@@ -120,9 +120,10 @@ bool DLL::isEmpty() { if (size == 0) { return true; } else { return false; } }
 void DLL::print() {
 	Node* curr = firstNode;
 	while (curr != NULL) {
-		cout << curr->item.getNumber() << ", ";
+		cout << curr->item.getNumber() << " -> ";
 		curr = curr->next;
 	}
+	cout << "END";
 	cout << endl;
 }
 int DLL::getLength() {

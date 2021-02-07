@@ -35,12 +35,12 @@ int main()
     passengerList.add(p3);
     passengerList.add(p4);
     passengerList.add(p5);
-    cache.set(f1);
-    cache.set(f2);
-    cache.set(f3);
-    cache.set(f4);
-    cache.set(f5);
     cache.set(f6);
+    cache.set(f4);
+    cache.set(f3);
+    cache.set(f2);
+    cache.set(f5);
+    cache.set(f1);
     flightList.add(f6);
     flightList.add(f4);
     flightList.add(f3);
@@ -48,6 +48,10 @@ int main()
     flightList.add(f5);
     flightList.add(f1);
     flightList.mergesort();     //Apply merge sort algorithm
+
+
+
+
 
     bool valid = true;
     string val = "0";
@@ -144,8 +148,10 @@ int main()
             {
                 if (name == passengerList.get(i).getUsername())
                 {
+                    Flight flight = passengerList.get(i).getFlight();
+                    cache.set(flight);
                     cout << "Name: " << name << endl;
-                    cout << "Flight: " << passengerList.get(i).getFlight().getNumber() << endl;
+                    cout << "Flight: " << flight.getNumber() << endl;
                 }
             }
         }
@@ -153,7 +159,11 @@ int main()
             string num;
             cout << "Selected Flight: ";
             cin >> num;
-            Flight* flight = flightList.find(num);
+
+            Flight* flight = cache.get(num);
+            if (flight == nullptr) {
+                flight = flightList.find(num);
+            }
             if (flight == nullptr) 
             {
                 cout << "Invalid fight number!" << endl;
@@ -173,13 +183,13 @@ int main()
             cout << "Enter flight number" << endl;
             cin >> number;
             auto start = chrono::steady_clock::now();
-            Flight flight;
-            flight = cache.get(number);
-            if (flight.getNumber() == "") {
-                flight = *flightList.find(number);
+            Flight* flight = cache.get(number);
+            if (flight == nullptr) {
+                flight = flightList.find(number);
+                cache.set(*flight);
             }
             auto end = chrono::steady_clock::now();
-            cout << flight.toString() << endl;
+            flight->toString();
             cout << "Elapsed Time (ns):" << chrono::duration_cast<chrono::nanoseconds>(end - start).count() << endl;
         }
         else if (val == "7") {

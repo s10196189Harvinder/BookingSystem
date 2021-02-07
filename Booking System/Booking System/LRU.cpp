@@ -15,14 +15,15 @@ public:
 			cacheSize = size;
 		}
 	}
-	Flight get(string key) {
+	Flight* get(string key) {
 		Flight flight = Flight();
 		Node* node = keyTable.get(key);
 		if (node!=nullptr) {
 			flight = node->item;
 			items.pushToHead(node);
+			return &(node->item);
 		}
-		return flight;
+		return nullptr;
 	}
 
 	void set(Flight item) {
