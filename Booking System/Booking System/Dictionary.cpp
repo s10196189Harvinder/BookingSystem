@@ -1,3 +1,8 @@
+//=====================================================================
+//Group: P05
+//ID (Name): Harvinder Arjun Singh (S10196189D), Wayne Lee (S10177125E)
+//=====================================================================
+
 #include "DLL.h"
 #include "Dictionary.h"
 Dictionary::Dictionary() {

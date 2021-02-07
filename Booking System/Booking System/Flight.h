@@ -1,5 +1,9 @@
+//=====================================================================
+//Group: P05
+//ID (Name): Harvinder Arjun Singh (S10196189D), Wayne Lee (S10177125E)
+//=====================================================================
+
 #pragma once
-// Flight.h - Definition of Flight class
 
 #include <string>
 #include <iostream>

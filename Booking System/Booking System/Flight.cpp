@@ -1,4 +1,8 @@
-// Flight.cpp - Implementation of Flight class
+//=====================================================================
+//Group: P05
+//ID (Name): Harvinder Arjun Singh (S10196189D), Wayne Lee (S10177125E)
+//=====================================================================
+
 #include "Flight.h"
 #include <iomanip>
 

@@ -1,5 +1,7 @@
-// Booking System.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+//=====================================================================
+//Group: P05
+//ID (Name): Harvinder Arjun Singh (S10196189D), Wayne Lee (S10177125E)
+//=====================================================================
 
 #include <iostream>
 #include <iomanip>
